@@ -1,8 +1,8 @@
-# RESTful API for lineupx
+# RESTful API for FoodShala
 
 ## This API is live :
 
--[API base URL](https://rocky-wave-81720.herokuapp.com/)
+-[API base URL](https://foodshala-db.herokuapp.com/)
 
 ## Steps to run locally
 
@@ -22,123 +22,87 @@ npm start
 
 # Routes
 
-## /candidate
+## /clients
 
 ### - Methods:
-Get: It will show the list of candidates
-Post: To post the list of candidate
+Get: It will show the list of Restaurants
+Post: It will add new restaurant
 
-Modal for post:
+Modal for Client:
 
 ```
-export const CandidateSchema = new Schema({
-    cName : {
-        type: String,
-        required: 'Enter the Candidate Name'
-    },
-    cLocation: {
-        type: String,
-        required: 'Enter the location of candidate'
-    },
-    jobsApplied: {
-        type: Array
-    }
+const schema = new Schema({
+    username: { type: String, unique: true, required: true },
+    hash: { type: String, required: true },
+    accountType: { type: String, required: true },
+    restaurantName: {type: String, required: true},
+    cusines: {type: Array, required: true},
+    createdDate: { type: Date, default: Date.now },
 });
 ```
-# /candidate/:candidateId
+# /client/:clientId
 
-## Get: To find one candidate
+## Get: To find one Restaurant
 
-## Put: To Update a Candidate
+## Put: To Update a Restaurant
 
-# /job
-## Get : To view the list of jobs
+# /user
+## Get : To view the list of users
 
-### - with query strings ?
-```
-export const findQuery = (req,res) => {
-    Job.find({title: req.query.title},(err, job) => {
-        if (err) {
-            res.send(err);
-        }
-        else res.json(job)
-    })
-}
-
-
-const routes = (app) => {
-    let middleware = function (req, res, next) {
-        if (!req.query.title) return next();
-      
-        findQuery(req,res);
-        
-    };
- ```
  
-## Post: To create a new Job
+## Post: To create a new user
 
 ```
-export const JobSchema = new Schema({
-    title: {
-        type: String,
-        required: "Enter the job title",
-    },
-    location: {
-        type: String,
-        required: "Enter the location",
-    },
-    screen: {
-        type: String,
-        required: "Enter the location",
-    },
-    offer: {
-        type: String,
-        required: "Enter the location",
-    },
-    rejected: {
-        type: Number,
-    },
-    candidates: {
-        type: Array,
-    },
+const schema = new Schema({
+    username: { type: String, unique: true, required: true },
+    hash: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    accountType: { type: String, required: true },
+    preference: { type: String, required: true },
+    cart: { type: Array },
+    createdDate: { type: Date, default: Date.now },
 });
 ```
 
-# /job/:jobId
+# /user/:userId
 
 ## Get :
 
-To return a particular Job
+To return a particular user
 
 ## Put:
-To update a particular Job
+To update a particular user
 
 ## Delete:
-To delete a particular job
+To delete a particular user
 
-# /interview
+# /menu
 
-## Get : To give the list of interviews
+## Get : To give the list of menu Items
 
-## Post: To schedule a new Interview
+## Post: To create a new menu item
+```
+const schema = new Schema({
+    name: { type: String, required: true },
+    itemDescription: { type: String, required: true },
+    mealType: { type: String, required: true },
+    restaurantId: { type: String, required: true },
+    price: {type: Number, required: true},
+    createdDate: { type: Date, default: Date.now },
+});
 ```
 
-export const InterviewsSchema = new Schema({
-    cId: {
-        type: String,
-        required: 'Provide the cID'
-    },
-    cName: {
-        type: String,
-        required: 'Provide the cName'
-    },
-    data : {
-        type: Date,
-        required: 'Provide the Date and Time'
-    }
+## Put: To update menu item
 
-})
-```
+# /order/:Id
+
+## Get: To get orders of the particular ID
+
+## Post: To create a new order to the particular ID
+
+## Put: To update the status of the order
+ 
 
 
 
