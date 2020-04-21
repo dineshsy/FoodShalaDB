@@ -1,0 +1,6 @@
+﻿{
+    "connectionString": "mongodb+srv://user:user@mycluster-2vtjp.mongodb.net/foodshala?retryWrites=true&w=majority",
+    "secret": "my_jwtSecret",
+    "clientId": "888682696529-97a3jnpibo8k94s6i2ijo73bbmf3av21.apps.googleusercontent.com",
+    "clientSecret": "fSd5jmBa_LG4Rv-OigxjIBd3"
+}
